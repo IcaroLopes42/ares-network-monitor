@@ -31,6 +31,7 @@ Diferente de analisadores tradicionais que geram uma cascata infinita de logs il
 - [ ] **Sprint 2:** Lógica de identificação de aplicativos via DNS/SNI.
 - [ ] **Sprint 3:** Renderização assíncrona do dashboard com `rich`.
 - [ ] **Sprint 4:** Módulo de segurança, alertas e *Garbage Collection* de IPs inativos.
+- [ ] **Sprint 5:** Suporte opcional para exportação de métricas para o InfluxDB e visualização de dashboards no Grafana.
 
 ---
 
@@ -57,6 +58,7 @@ Unlike traditional analyzers that generate an infinite cascade of unreadable log
 - [ ] **Sprint 2:** Application identification logic via DNS/SNI.
 - [ ] **Sprint 3:** Asynchronous dashboard rendering using `rich`.
 - [ ] **Sprint 4:** Security module, alerts, and Garbage Collection for inactive IPs.
+- [ ] **Sprint 5:** Optional support for exporting metrics to InfluxDB and visualizing dashboards in Grafana.
 
 ---
 
