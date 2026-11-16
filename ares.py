@@ -4,6 +4,14 @@ import threading
 import time
 
 INTERFACE = 'Wi-Fi'
+estado_rede: dict = {}
+
+def registrar_ip_novo(ip: str) -> dict:
+    "Retorna o schema inicial do estado para um IP recem visto"
+    return {"total_pacotes": 0,
+             "portas_tcp_destino": set(), 
+             "portas_udp_destino": set()
+             }
 
 def capturar_trafego(interface):
 
