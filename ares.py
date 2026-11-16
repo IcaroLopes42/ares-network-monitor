@@ -13,6 +13,26 @@ def registrar_ip_novo(ip: str) -> dict:
              "portas_udp_destino": set()
              }
 
+def atualizar_estado(pacote, estado: dict) -> None:
+    try:
+        ip = pacote.ip.src
+    except AttributeError:
+        return
+
+    if ip not in estado:
+        estado[ip] = registrar_ip_novo(ip)
+    estado[ip]["total_pacotes"] += 1
+
+    try:
+        estado[ip]["portas_tcp_destino"].add(int(pacote.tcp.dstport))
+    except AttributeError:
+        pass  # ← pacote sem camada TCP, segue em frente
+
+    try:
+        estado[ip]["portas_udp_destino"].add(int(pacote.udp.dstport))
+    except AttributeError:
+        pass  # ← pacote sem camada UDP, segue em frente
+
 def capturar_trafego(interface):
 
     loop = asyncio.new_event_loop()
