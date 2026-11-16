@@ -40,15 +40,14 @@ def capturar_trafego(interface):
 
     print(f"[*] Iniciando motor de captura na interface: {interface}...")
     captura = pyshark.LiveCapture(interface=interface)
+    contador_pacotes = 0
     
     for pacote in captura.sniff_continuously():
-        try: 
-            ip_origem = pacote.ip.src
-            ip_destino = pacote.ip.dst
-            print(f"[Captura] {ip_origem} -> {ip_destino}")
-        except AttributeError:
-            # Ignora pacotes que não têm a camada IP
-            continue
+        atualizar_estado(pacote, estado_rede)
+        contador_pacotes += 1
+        # TODO(sprint-3): remover heartbeat ao integrar dashboard rich
+        if contador_pacotes % 100 == 0:
+            print(f"[ARES] {contador_pacotes} pacotes processados · {len(estado_rede)} IPs únicos")
 
 if __name__ == '__main__':
     # Configura e inicia a Thread em background
